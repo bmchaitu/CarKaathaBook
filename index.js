@@ -28,7 +28,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://chaitu:Iamfine@420@cluster0.jk33l.mongodb.net/userDB?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
 
 userSchema = new mongoose.Schema({
 	username : String,
