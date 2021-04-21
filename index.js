@@ -28,7 +28,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
+
+(async ()=>{
+    const con = await mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
+})()
+.catch(err => console.log(err));
 
 userSchema = new mongoose.Schema({
 	username : String,
