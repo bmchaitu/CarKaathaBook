@@ -1,0 +1,11 @@
+<%- include('header') -%>
+<div class="container p-5">
+<form class="form-signin" method="post" action="/api/customers">
+    <h2>Enter New Customer Details</h2>
+    <input type="text" name="name"  class="form-control m-3" placeholder="Enter username" required autofocus>
+    <input type="email" name="email"  class="form-control m-3" placeholder="Enter user email" required >
+    <input type="text" name="contact"  class="form-control m-3" placeholder="Enter user contact" required >
+    <button class="btn btn-lg btn-primary btn-block my-1" type="submit">Done</button>
+  </form>
+</div>
+<%- include('footer') -%>

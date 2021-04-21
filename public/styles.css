@@ -1,0 +1,59 @@
+.form-div{
+    margin:auto;
+    margin-top:30px;
+    width:800px;
+    height:500px;
+    background-color:#fbe0c4;
+    text-align: center;
+    padding: 25px;
+}
+
+h1{
+    font-size: 90px;
+    font-family: Lobster;
+}
+
+p{
+    font-size: 25px;
+}
+.signin-form{
+    margin-top:350px;
+    padding:50px;
+    text-align: center;
+    width:600px;
+    margin:auto;
+    background-color: #a8e6cf;
+}
+
+.login-form{
+    margin-top:350px;
+    padding:50px;
+    text-align: center;
+    width:800px;
+    height:500px;
+    margin:auto;
+    background-color: #7868e6;
+}
+.users-div{
+    width:50%;
+    display:inline;
+    width:50%;
+    background-color: black;
+}
+.cars-div{
+    width:100%;
+    display:inline;
+    width:50%;
+    background-color: red;
+    margin:50px;
+}
+.container{
+    display:inline
+    padding:10px;
+    
+    
+}
+.jumbotron{
+    display:inline;
+    width:50%;
+}

@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<body>
+<div class="container my-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Customers</li>
+    </ol>
+  </nav>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+      <% Customers.map((customer)=>{ %>
+            <tr>
+              <td>
+                <%= customer.name %>
+              </td>
+              <td>
+                <%= customer.email %>
+              </td>
+              <td>
+                <%= customer.contact %>
+              </td>
+            </tr>
+         <% }); %>
+        </tbody>
+        <tr>
+            <td>
+                <a href="/api/addcustomers" role="button" class="btn btn-primary">
+                  Add   
+                </a>
+            </td>
+        </tr>
+      </table>
+  </div>
+<%- include('footer') -%>
