@@ -99,5 +99,5 @@ app.get('/api/addcustomers',Auth,function(req,res){
     res.render('addcustomer');
 });
 app.listen(PORT,()=>{
-    console.log(`server running on port ${PORT}`);
+    console.log(`server is running on port ${PORT}`);
 });
