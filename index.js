@@ -1,4 +1,4 @@
-require('dotenv').config({path:'.env'});
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -28,10 +28,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-async function connectDB(){
-    await mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
-    mongoose.set('bufferCommands', false);
-}
+
+mongoose.connect('mongodb+srv://chaitu:Iamfine@420@cluster0.jk33l.mongodb.net/userDB?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.set('bufferCommands', false);
 connectDB();
 
 userSchema = new mongoose.Schema({
