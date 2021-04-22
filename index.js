@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
-
+mongoose.set('bufferCommands', false);
 
 userSchema = new mongoose.Schema({
 	username : String,
