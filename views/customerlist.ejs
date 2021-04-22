@@ -1,12 +1,16 @@
 <%- include('header') -%>
 <body>
 <div class="container my-2">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Customers</li>
-    </ol>
-  </nav>
+  <div class="container my-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Cars</li>
+      </ol>
+      <div class="d-flex flex-row-reverse">
+        <a class="btn btn-danger" href="/logout" role="button">LogOut</a>
+      </div>
+    </nav>
     <table class="table">
         <thead>
           <tr>
