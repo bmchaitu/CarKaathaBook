@@ -28,8 +28,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
-mongoose.set('bufferCommands', false);
+async function connectDB(){
+    await mongoose.connect(process.env.DB_STRING,{useNewUrlParser:true, useUnifiedTopology:true});
+    mongoose.set('bufferCommands', false);
+}
+connectDB();
 
 userSchema = new mongoose.Schema({
 	username : String,
