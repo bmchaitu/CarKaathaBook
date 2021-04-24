@@ -6,7 +6,7 @@ const Auth = require('../middleware/auth');
 router.get('/',(req,res)=>{
     Customer.find({},function(err,result){
         if(!err){
-        res.render('customerlist',{Customers:result});
+        res.json(result);
         }
     });
 });

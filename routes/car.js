@@ -6,7 +6,7 @@ const Auth = require('../middleware/auth');
 Router.get('/',(req,res)=>{
     Car.find({},function(err,result){
         if(!err){
-            res.render('list',{Cars:result});
+            res.json(result);
         }
     });
 });
