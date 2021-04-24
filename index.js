@@ -10,11 +10,12 @@ const session = require('express-session');
 const passport = require('passport');
 const Auth = require('./middleware/auth');
 const passportLocalMongoose = require('passport-local-mongoose');
+const cors = require('cors');
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use('/api/customers',CustomerRoute);
 app.use('/api/cars',CarRoute);
 
