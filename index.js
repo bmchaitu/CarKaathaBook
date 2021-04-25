@@ -11,6 +11,7 @@ const passport = require('passport');
 const Auth = require('./middleware/auth');
 const passportLocalMongoose = require('passport-local-mongoose');
 const cors = require('cors');
+var jwt = require('jsonwebtoken');
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
@@ -50,9 +51,11 @@ app.get('/',function(req,res){
     else
     res.render('home');
 });
+
 app.get('/dashboard',Auth,function(req,res){
     res.render('dashboard');
 });
+
 app.post('/register',function(req,res){
     User.register({username:req.body.username}, req.body.password, function(err,user){
         if(err){
@@ -61,15 +64,21 @@ app.post('/register',function(req,res){
         else
         {
             passport.authenticate('local')(req,res,function(){
-                res.status(200).json({msg:'SignUp success'}); 
+                res.setHeader("Content-Type", "application/json");
+                let token = jwt.sign({ id: 123 }, '12345', {
+                expiresIn: "1h",
+                });
+                res.status(200).json({user:req.user,token}); 
             })
         }
 
     })
 });
+
 app.get('/register',function(req,res){
     res.render('signup');
 });
+
 app.post('/login',function(req,res){
     const user = new User({
         username:req.body.username,
@@ -80,10 +89,11 @@ app.post('/login',function(req,res){
         console.log(err)
         else
         passport.authenticate('local')(req,res,function(){
-            res.redirect('/dashboard');
+            console.log(req);
         })
     })
 });
+
 app.get('/login',function(req,res){
     res.render('login');
 });
