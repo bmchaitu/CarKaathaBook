@@ -48,10 +48,12 @@ Router.put('/:model',function(req,res){
     });
 });
 
-Router.delete(function(req,res){
-    Car.findByIdAndDelete({_id:req.body.id},function(err){
+Router.delete('/:id',function(req,res){
+    Car.findByIdAndDelete({_id:req.params.id},function(err){
         if(!err)
             res.status(200).json({msg:'deleted'});
+        else
+            res.status(400).json({msg:'Not deleted'});
     });
 
 });
