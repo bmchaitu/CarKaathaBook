@@ -65,7 +65,7 @@ app.post('/register',function(req,res){
         {
             passport.authenticate('local')(req,res,function(){
                 res.setHeader("Content-Type", "application/json");
-                let token = jwt.sign({ id: 123 }, '12345', {
+                let token = jwt.sign({ id: req.user._id }, '12345', {
                 expiresIn: "1h",
                 });
                 res.status(200).json({user:req.user,token}); 
@@ -89,7 +89,11 @@ app.post('/login',function(req,res){
         console.log(err)
         else
         passport.authenticate('local')(req,res,function(){
-            console.log(req);
+            res.setHeader("Content-Type", "application/json");
+                let token = jwt.sign({ id:req.user._id }, '12345', {
+                expiresIn: "1h",
+                });
+                res.status(200).json({user:req.user,token}); 
         })
     })
 });
