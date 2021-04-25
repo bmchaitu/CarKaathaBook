@@ -48,7 +48,7 @@ Router.put('/:model',function(req,res){
     });
 });
 
-Route.delete(function(req,res){
+Router.delete(function(req,res){
     Car.findByIdAndDelete({_id:req.body.id},function(err){
         if(!err)
             res.status(200).json({msg:'deleted'});
