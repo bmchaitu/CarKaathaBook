@@ -56,13 +56,12 @@ app.get('/dashboard',Auth,function(req,res){
 app.post('/register',function(req,res){
     User.register({username:req.body.username}, req.body.password, function(err,user){
         if(err){
-            console.log(err)
-            res.json({msg: err.msg});
+            res.status(400).json({msg: 'User already registered'});
         }
         else
         {
             passport.authenticate('local')(req,res,function(){
-                res.redirect('/dashboard'); 
+                res.status(200).json({msg:'SignUp success'}); 
             })
         }
 
