@@ -20,9 +20,9 @@ Router.post('/',function(req,res){
     });
     car.save(function(err){
         if(!err)
-        res.redirect('/api/cars');
+        res.status(200).json({msg:'car added'});
         else
-        res.send('data not saved');
+        res.status(400).json({msg:'car not added'});
     });
 });
 
