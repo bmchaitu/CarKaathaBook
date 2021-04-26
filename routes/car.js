@@ -37,14 +37,16 @@ Router.get('/:model',function(req,res){
 });
 
 
-Router.put('/:model',function(req,res){
-    Car.findOneAndUpdate({name:req.body.name},{
+Router.put('/:id',function(req,res){
+    Car.findOneAndUpdate({_id:req.params.id},{
         model:req.body.model,
         year:req.body.year,
         color : req.body.color
     },function(err,result){
         if(!err)
-        res.send('cutomer updated');
+        res.status(200).json({msg:'customer updated'});
+        else
+        res.status(400).json({msg:'failed'});
     });
 });
 

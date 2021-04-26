@@ -113,6 +113,35 @@ app.get('/api/addcars',Auth,function(req,res){
 app.get('/api/addcustomers',Auth,function(req,res){
     res.render('addcustomer');
 });
-app.listen(PORT,()=>{
+
+app.post('/validate',async (req, res) => {
+    try {
+      const token = req.header("x-auth-token");
+      if (!token) return res.json('token not found');
+
+      const verified = jwt.verify(token, '12345');
+      if (!verified) return res.json('Not a registered user');
+
+      const user = await User.findById(verified.id);
+      if (!user) return res.json('user not found');
+
+      return res.json(user);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+app.get('/user',async (req,res) => {
+    const token = req.header("x-auth-token");
+    const verified = jwt.verify(token, '12345');
+    const user = await User.findById(verified.id);
+    res.json({
+      _id: user._id,
+      username: user.username
+    });
+})
+
+
+app.listen(4000,()=>{
     console.log(`server is running on port ${PORT}`);
 });
