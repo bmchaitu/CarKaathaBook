@@ -16,6 +16,7 @@ app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 app.use('/api/customers',CustomerRoute);
 app.use('/api/cars',CarRoute);
@@ -45,6 +46,7 @@ const User = mongoose.model('user',userSchema);
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 app.get('/',function(req,res){
     if(req.isAuthenticated())
     res.render('dashboard');
@@ -59,7 +61,7 @@ app.get('/dashboard',Auth,function(req,res){
 app.post('/register',function(req,res){
     User.register({username:req.body.username}, req.body.password, function(err,user){
         if(err){
-            res.status(400).json({msg: 'User already registered'});
+            res.status(400).json({msg: err.message});
         }
         else
         {
@@ -93,6 +95,7 @@ app.post('/login',function(req,res){
                 let token = jwt.sign({ id:req.user._id }, '12345', {
                 expiresIn: "1h",
                 });
+                console.log(token);
                 res.status(200).json({user:req.user,token}); 
         })
     })
